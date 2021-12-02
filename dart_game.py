@@ -35,21 +35,21 @@ if attack_order[0] == 1:
     attack_first = 'al'
 elif attack_order[0] == 2:
     attack_first = 'ben'
-else: 
+else:
     attack_first = 'charlie'
 
 if attack_order[1] == 1:
     attack_second = 'al'
 elif attack_order[1] == 2:
     attack_second = 'ben'
-else: 
+else:
     attack_second = 'charlie'
 
 if attack_order[2] == 1:
     attack_third = 'al'
 elif attack_order[2] == 2:
     attack_third = 'ben'
-else: 
+else:
     attack_third = 'charlie'
 
 ## Matches
@@ -62,7 +62,7 @@ def match_1():
             if random.uniform(0, 1) < al_attack_ability:
                 ben_alive = False
                 print("        Al was successful at attacking Ben.")
-            else: 
+            else:
                 print("        Al was not successful attacking Ben.")
         elif charlie_alive == True:
             match += 1
@@ -70,7 +70,7 @@ def match_1():
             if random.uniform(0, 1) < al_attack_ability:
                 charlie_alive = False
                 print("        Al was successful at attacking Charlie.")
-            else: 
+            else:
                 print("        Al was not successful attacking Charlie.")
     if attack_first == 'ben' and ben_alive == True:
         if al_alive == True:
@@ -79,7 +79,7 @@ def match_1():
             if random.uniform(0, 1) < ben_attack_ability:
                 al_alive = False
                 print("        Ben was successful at attacking Al.")
-            else: 
+            else:
                 print("        Ben was not successful attacking Al.")
         elif charlie_alive == True:
             match += 1
@@ -87,7 +87,7 @@ def match_1():
             if random.uniform(0, 1) < ben_attack_ability:
                 charlie_alive = False
                 print("        Ben was successful at attacking Charlie.")
-            else: 
+            else:
                 print("        Ben was not successful attacking Charlie.")
     if attack_first == 'charlie' and charlie_alive == True:
         if al_alive == True:
@@ -96,7 +96,7 @@ def match_1():
             if random.uniform(0, 1) < charlie_attack_ability:
                 al_alive = False
                 print("        Charlie was successful at attacking Al.")
-            else: 
+            else:
                 print("        Charlie was not successful attacking Al.")
         elif ben_alive == True:
             match += 1
@@ -104,7 +104,7 @@ def match_1():
             if random.uniform(0, 1) < charlie_attack_ability:
                 ben_alive = False
                 print("        Charlie was successful at attacking Ben.")
-            else: 
+            else:
                 print("        Charlie was not successful attacking Ben.")
     return()
 
@@ -117,7 +117,7 @@ def match_2():  # attack_second
             if random.uniform(0, 1) < al_attack_ability:
                 ben_alive = False
                 print("        Al was successful at attacking Ben.")
-            else: 
+            else:
                 print("        Al was not successful attacking Ben.")
         elif charlie_alive == True:
             match += 1
@@ -125,7 +125,7 @@ def match_2():  # attack_second
             if random.uniform(0, 1) < al_attack_ability:
                 charlie_alive = False
                 print("        Al was successful at attacking Charlie.")
-            else: 
+            else:
                 print("        Al was not successful attacking Charlie.")
     if attack_second == 'ben' and ben_alive == True:
         if al_alive == True:
@@ -134,7 +134,7 @@ def match_2():  # attack_second
             if random.uniform(0, 1) < ben_attack_ability:
                 al_alive = False
                 print("        Ben was successful at attacking Al.")
-            else: 
+            else:
                 print("        Ben was not successful attacking Al.")
         elif charlie_alive == True:
             match += 1
@@ -142,7 +142,7 @@ def match_2():  # attack_second
             if random.uniform(0, 1) < ben_attack_ability:
                 charlie_alive = False
                 print("        Ben was successful at attacking Charlie.")
-            else: 
+            else:
                 print("        Ben was not successful attacking Charlie.")
     if attack_second == 'charlie' and charlie_alive == True:
         if al_alive == True:
@@ -151,7 +151,7 @@ def match_2():  # attack_second
             if random.uniform(0, 1) < charlie_attack_ability:
                 al_alive = False
                 print("        Charlie was successful at attacking Al.")
-            else: 
+            else:
                 print("        Charlie was not successful attacking Al.")
         elif ben_alive == True:
             match += 1
@@ -159,7 +159,7 @@ def match_2():  # attack_second
             if random.uniform(0, 1) < charlie_attack_ability:
                 ben_alive = False
                 print("        Charlie was successful at attacking Ben.")
-            else: 
+            else:
                 print("        Charlie was not successful attacking Ben.")
     return()
 
@@ -172,7 +172,7 @@ def match_3():  # attack_third
             if random.uniform(0, 1) < al_attack_ability:
                 ben_alive = False
                 print("        Al was successful at attacking Ben.")
-            else: 
+            else:
                 print("        Al was not successful attacking Ben.")
         elif charlie_alive == True:
             match += 1
@@ -180,7 +180,7 @@ def match_3():  # attack_third
             if random.uniform(0, 1) < al_attack_ability:
                 charlie_alive = False
                 print("        Al was successful at attacking Charlie.")
-            else: 
+            else:
                 print("        Al was not successful attacking Charlie.")
     if attack_third == 'ben' and ben_alive == True:
         if al_alive == True:
@@ -189,7 +189,7 @@ def match_3():  # attack_third
             if random.uniform(0, 1) < ben_attack_ability:
                 al_alive = False
                 print("        Ben was successful at attacking Al.")
-            else: 
+            else:
                 print("        Ben was not successful attacking Al.")
         elif charlie_alive == True:
             match += 1
@@ -197,7 +197,7 @@ def match_3():  # attack_third
             if random.uniform(0, 1) < ben_attack_ability:
                 charlie_alive = False
                 print("        Ben was successful at attacking Charlie.")
-            else: 
+            else:
                 print("        Ben was not successful attacking Charlie.")
     if attack_third == 'charlie' and charlie_alive == True:
         if al_alive == True:
@@ -206,7 +206,7 @@ def match_3():  # attack_third
             if random.uniform(0, 1) < charlie_attack_ability:
                 al_alive = False
                 print("        Charlie was successful at attacking Al.")
-            else: 
+            else:
                 print("        Charlie was not successful attacking Al.")
         elif ben_alive == True:
             match += 1
@@ -214,7 +214,7 @@ def match_3():  # attack_third
             if random.uniform(0, 1) < charlie_attack_ability:
                 ben_alive = False
                 print("        Charlie was successful at attacking Ben.")
-            else: 
+            else:
                 print("        Charlie was not successful attacking Ben.")
     return()
 
