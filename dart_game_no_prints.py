@@ -68,141 +68,124 @@ def attack_order():
 
 ## Matches
 def match_1(): # First Match of this Round
-    global al_alive, ben_alive, charlie_alive, match
+    global al_alive, ben_alive, charlie_alive
+    global num_games_ran, round, match
 
     if attack_first == 'al' and al_alive == True:
         if ben_alive == True:
-            match += 1
             if random.uniform(0, 1) < al_attack_ability:
                 ben_alive = False
 
         elif charlie_alive == True:
-            match += 1
             if random.uniform(0, 1) < al_attack_ability:
                 charlie_alive = False
 
     if attack_first == 'ben' and ben_alive == True:
         if al_alive == True:
-            match += 1
             if random.uniform(0, 1) < ben_attack_ability:
                 al_alive = False
 
         elif charlie_alive == True:
-            match += 1
             if random.uniform(0, 1) < ben_attack_ability:
                 charlie_alive = False
 
     if attack_first == 'charlie' and charlie_alive == True:
         if al_alive == True:
-            match += 1
             if random.uniform(0, 1) < charlie_attack_ability:
                 al_alive = False
 
         elif ben_alive == True:
-            match += 1
             if random.uniform(0, 1) < charlie_attack_ability:
                 ben_alive = False
 
     print("This is game {}, round {} match {}".format(num_games_ran, round, match))
+    print("Al is alive: {}   Ben is alive: {}   Charlie is alive: {}".format(al_alive, ben_alive, charlie_alive))
 
     return()
 
 def match_2():  # Second match of this round
-    global al_alive, ben_alive, charlie_alive, match
+    global al_alive, ben_alive, charlie_alive
+    global num_games_ran, round, match
 
     if attack_second == 'al' and al_alive == True:
         if ben_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < al_attack_ability:
                 ben_alive = False
 
         elif charlie_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < al_attack_ability:
                 charlie_alive = False
 
     if attack_second == 'ben' and ben_alive == True:
         if al_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < ben_attack_ability:
                 al_alive = False
 
         elif charlie_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < ben_attack_ability:
                 charlie_alive = False
 
     if attack_second == 'charlie' and charlie_alive == True:
         if al_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < charlie_attack_ability:
                 al_alive = False
 
         elif ben_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < charlie_attack_ability:
                 ben_alive = False
 
     print("This is game {}, round {} match {}".format(num_games_ran, round, match))
+    print("Al is alive: {}   Ben is alive: {}   Charlie is alive: {}".format(al_alive, ben_alive, charlie_alive))
 
     return()
 
 def match_3():  # Third match of this round
-    global al_alive, ben_alive, charlie_alive, match
+    global al_alive, ben_alive, charlie_alive
+    global num_games_ran, round, match
 
     if attack_third == 'al' and al_alive == True:
         if ben_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < al_attack_ability:
                 ben_alive = False
 
         elif charlie_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < al_attack_ability:
                 charlie_alive = False
 
     if attack_third == 'ben' and ben_alive == True:
         if al_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < ben_attack_ability:
                 al_alive = False
 
         elif charlie_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < ben_attack_ability:
                 charlie_alive = False
 
     if attack_third == 'charlie' and charlie_alive == True:
         if al_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < charlie_attack_ability:
                 al_alive = False
 
         elif ben_alive == True:
-            match += 1
 
             if random.uniform(0, 1) < charlie_attack_ability:
                 ben_alive = False
 
-
     print("This is game {}, round {} match {}".format(num_games_ran, round, match))
+    print("Al is alive: {}   Ben is alive: {}   Charlie is alive: {}".format(al_alive, ben_alive, charlie_alive))
 
     return()
-
-def round_score():
-    global round
-    round += 1
 
 
 def run_game():
@@ -210,13 +193,15 @@ def run_game():
     global al_alive, ben_alive, charlie_alive, match, round
     global attack_first, attack_second, attack_third
 
-    attack_order()
-
     while al_alive + ben_alive + charlie_alive > 1:
+        attack_order()
+        match = 0
         match_1()
+        match = 1
         match_2()
+        match = 2
         match_3()
-        round_score()
+        round += 1
 
     if al_alive == True:
         al_won += 1
@@ -234,6 +219,11 @@ def run_game():
     attack_first = ''
     attack_second = ''
     attack_third = ''
+
+    print ()
+
+    return()
+
 
 while num_games_ran < num_games_desired:
     run_game()
