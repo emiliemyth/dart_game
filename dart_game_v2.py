@@ -18,18 +18,43 @@ al_attack_ability = .8
 ben_attack_ability = .6
 charlie_attack_ability = .4
 
-## This is the number of games each player has won.
+## Each player has a preference to attacking someone
+al_attack_first  = 'ben'
+al_attack_second = 'charlie'
+
+ben_attack_first  = 'al'
+ben_attack_second = 'charlie'
+
+charlie_attack_first  = 'al'
+charlie_attack_second = 'ben'
+
+## The number of games each player has won.
 al_won = 0
 ben_won = 0
 charlie_won = 0
 num_games_ran = 0
 
+match = 0
+round = 0
 
 attack_first = ''
 attack_second = ''
 attack_third = ''
-match = 0
-round = 0
+
+## Building strategy dictionary
+strategy_dictionary = {
+    "first_match_player_offense":        "",
+    "first_match_player_first_defense":  "",
+    "first_match_player_second_defense": "",
+
+    "second_match_player_offense":        "",
+    "second_match_player_first_defense":  "",
+    "second_match_player_second_defense": "",
+
+    "third_match_player_offense":        "",
+    "third_match_player_first_defense":  "",
+    "third_match_player_second_defense": ""
+}
 
 ## Attack order
 def attack_order():
@@ -66,11 +91,62 @@ def attack_order():
     else:
         attack_third = 'charlie'
 
-## Matches
-def match_1(): # First Match of this Round
-    global al_alive, ben_alive, charlie_alive, match
+strategy_dictionary["first_match_player_offense"] = attack_first
 
-    if attack_first == 'al' and al_alive == True:
+if strategy_dictionary["first_match_player_offense"] == 'al':
+    strategy_dictionary["first_match_player_first_defense"] = al_attack_first
+    strategy_dictionary["first_match_player_second_defense"] = al_attack_second
+
+elif strategy_dictionary["first_match_player_offense"] == 'ben':
+    strategy_dictionary["first_match_player_first_defense"] = ben_attack_first
+    strategy_dictionary["first_match_player_second_defense"] = ben_attack_second
+
+elif strategy_dictionary["first_match_player_offense"] == 'charlie':
+    strategy_dictionary["first_match_player_first_defense"] = charlie_attack_first
+    strategy_dictionary["first_match_player_second_defense"] = charlie_attack_second
+
+
+strategy_dictionary["second_match_player_offense"] = attack_second
+
+if strategy_dictionary["second_match_player_offense"] == 'al':
+    strategy_dictionary["second_match_player_first_defense"] = al_attack_first
+    strategy_dictionary["second_match_player_second_defense"] = al_attack_second
+
+elif strategy_dictionary["second_match_player_offense"] == 'ben':
+    strategy_dictionary["second_match_player_first_defense"] = ben_attack_first
+    strategy_dictionary["second_match_player_second_defense"] = ben_attack_second
+
+elif strategy_dictionary["second_match_player_offense"] == 'charlie':
+    strategy_dictionary["second_match_player_first_defense"] = charlie_attack_first
+    strategy_dictionary["second_match_player_second_defense"] = charlie_attack_second
+
+
+strategy_dictionary["third_match_player_offense"]  = attack_third
+
+if strategy_dictionary["third_match_player_offense"] == 'al':
+    strategy_dictionary["third_match_player_first_defense"] = al_attack_first
+    strategy_dictionary["third_match_player_second_defense"] = al_attack_second
+
+elif strategy_dictionary["third_match_player_offense"] == 'ben':
+    strategy_dictionary["third_match_player_first_defense"] = ben_attack_first
+    strategy_dictionary["third_match_player_second_defense"] = ben_attack_second
+
+elif strategy_dictionary["third_match_player_offense"] == 'charlie':
+    strategy_dictionary["third_match_player_first_defense"] = charlie_attack_first
+    strategy_dictionary["third_match_player_second_defense"] = charlie_attack_second
+
+
+## Matches
+def match_(): # First Match of this Round
+    global al_alive, ben_alive, charlie_alive, match
+    global attack_first, attack_second, attack_third
+
+
+    if match == 0:
+        attack_first
+
+
+    attack_first == 'al' and al_alive == True:
         if ben_alive == True:
             match += 1
             if random.uniform(0, 1) < al_attack_ability:
@@ -103,102 +179,9 @@ def match_1(): # First Match of this Round
             if random.uniform(0, 1) < charlie_attack_ability:
                 ben_alive = False
 
-    print("This is game {}, round {} match {}".format(num_games_ran, round, match))
-
     return()
 
-def match_2():  # Second match of this round
-    global al_alive, ben_alive, charlie_alive, match
 
-    if attack_second == 'al' and al_alive == True:
-        if ben_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < al_attack_ability:
-                ben_alive = False
-
-        elif charlie_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < al_attack_ability:
-                charlie_alive = False
-
-    if attack_second == 'ben' and ben_alive == True:
-        if al_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < ben_attack_ability:
-                al_alive = False
-
-        elif charlie_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < ben_attack_ability:
-                charlie_alive = False
-
-    if attack_second == 'charlie' and charlie_alive == True:
-        if al_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < charlie_attack_ability:
-                al_alive = False
-
-        elif ben_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < charlie_attack_ability:
-                ben_alive = False
-
-    print("This is game {}, round {} match {}".format(num_games_ran, round, match))
-
-    return()
-
-def match_3():  # Third match of this round
-    global al_alive, ben_alive, charlie_alive, match
-
-    if attack_third == 'al' and al_alive == True:
-        if ben_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < al_attack_ability:
-                ben_alive = False
-
-        elif charlie_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < al_attack_ability:
-                charlie_alive = False
-
-    if attack_third == 'ben' and ben_alive == True:
-        if al_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < ben_attack_ability:
-                al_alive = False
-
-        elif charlie_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < ben_attack_ability:
-                charlie_alive = False
-
-    if attack_third == 'charlie' and charlie_alive == True:
-        if al_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < charlie_attack_ability:
-                al_alive = False
-
-        elif ben_alive == True:
-            match += 1
-
-            if random.uniform(0, 1) < charlie_attack_ability:
-                ben_alive = False
-
-
-    print("This is game {}, round {} match {}".format(num_games_ran, round, match))
-
-    return()
 
 def round_score():
     global round
@@ -220,9 +203,9 @@ def run_game():
 
     if al_alive == True:
         al_won += 1
-    elif ben_alive == True:
+    if ben_alive == True:
         ben_won += 1
-    elif charlie_alive == True:
+    if charlie_alive == True:
         charlie_won += 1
 
     num_games_ran += 1
