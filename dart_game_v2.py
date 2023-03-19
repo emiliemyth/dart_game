@@ -19,54 +19,30 @@ al_won = 0
 ben_won = 0
 charlie_won = 0
 num_games_ran = 0
-
-attack_first = ''
-attack_second = ''
-attack_third = ''
+attack_order = []
 match = 0
 round = 0
 
 
 ## Attack order
-def attack_order():
-    global attack_first, attack_second, attack_third
+def determine_attack_order():
+    global attack_order
 
     attack_order = []
 
-    ## Should be a more efficient way of doing this.
-    ## This creates an array of 1, 2, and 3 placed in a random order.
+    ## This creates a list of 0, 1, and 2 placed in a random order.
     while len(attack_order) < 3:
-        r = random.randint(1,3)
+        r = random.randint(0,2)
         if r not in attack_order: attack_order.append(r)
 
     # print(attack_order)
 
-    if attack_order[0] == 1:
-        attack_first = 'al'
-    elif attack_order[0] == 2:
-        attack_first = 'ben'
-    else:
-        attack_first = 'charlie'
-
-    if attack_order[1] == 1:
-        attack_second = 'al'
-    elif attack_order[1] == 2:
-        attack_second = 'ben'
-    else:
-        attack_second = 'charlie'
-
-    if attack_order[2] == 1:
-        attack_third = 'al'
-    elif attack_order[2] == 2:
-        attack_third = 'ben'
-    else:
-        attack_third = 'charlie'
-
 ## Matches
 def match_1(): # First Match of this Round
     global al_alive, ben_alive, charlie_alive, match
+    global attack_order
 
-    if attack_first == 'al' and al_alive == True:
+    if attack_order[0] == 0 and al_alive == True:
         if ben_alive == True:
             match += 1
             if random.uniform(0, 1) < al_attack_ability:
@@ -77,7 +53,7 @@ def match_1(): # First Match of this Round
             if random.uniform(0, 1) < al_attack_ability:
                 charlie_alive = False
 
-    if attack_first == 'ben' and ben_alive == True:
+    if attack_order[0] == 1 and ben_alive == True:
         if al_alive == True:
             match += 1
             if random.uniform(0, 1) < ben_attack_ability:
@@ -88,7 +64,7 @@ def match_1(): # First Match of this Round
             if random.uniform(0, 1) < ben_attack_ability:
                 charlie_alive = False
 
-    if attack_first == 'charlie' and charlie_alive == True:
+    if attack_order[0] == 2 and charlie_alive == True:
         if al_alive == True:
             match += 1
             if random.uniform(0, 1) < charlie_attack_ability:
@@ -103,8 +79,9 @@ def match_1(): # First Match of this Round
 
 def match_2():  # Second match of this round
     global al_alive, ben_alive, charlie_alive, match
+    global attack_order
 
-    if attack_second == 'al' and al_alive == True:
+    if attack_order[1] == 0 and al_alive == True:
         if ben_alive == True:
             match += 1
 
@@ -117,7 +94,7 @@ def match_2():  # Second match of this round
             if random.uniform(0, 1) < al_attack_ability:
                 charlie_alive = False
 
-    if attack_second == 'ben' and ben_alive == True:
+    if attack_order[1] == 1 and ben_alive == True:
         if al_alive == True:
             match += 1
 
@@ -130,7 +107,7 @@ def match_2():  # Second match of this round
             if random.uniform(0, 1) < ben_attack_ability:
                 charlie_alive = False
 
-    if attack_second == 'charlie' and charlie_alive == True:
+    if attack_order[1] == 2 and charlie_alive == True:
         if al_alive == True:
             match += 1
 
@@ -147,8 +124,9 @@ def match_2():  # Second match of this round
 
 def match_3():  # Third match of this round
     global al_alive, ben_alive, charlie_alive, match
+    global attack_order
 
-    if attack_third == 'al' and al_alive == True:
+    if attack_order[2] == 0 and al_alive == True:
         if ben_alive == True:
             match += 1
 
@@ -161,7 +139,7 @@ def match_3():  # Third match of this round
             if random.uniform(0, 1) < al_attack_ability:
                 charlie_alive = False
 
-    if attack_third == 'ben' and ben_alive == True:
+    if attack_order[2] == 1 and ben_alive == True:
         if al_alive == True:
             match += 1
 
@@ -174,7 +152,7 @@ def match_3():  # Third match of this round
             if random.uniform(0, 1) < ben_attack_ability:
                 charlie_alive = False
 
-    if attack_third == 'charlie' and charlie_alive == True:
+    if attack_order[2] == 2 and charlie_alive == True:
         if al_alive == True:
             match += 1
 
@@ -199,7 +177,7 @@ def run_game():
     global al_alive, ben_alive, charlie_alive, match, round
     global attack_first, attack_second, attack_third
 
-    attack_order()
+    determine_attack_order()
 
     while al_alive + ben_alive + charlie_alive > 1:
         match_1()
